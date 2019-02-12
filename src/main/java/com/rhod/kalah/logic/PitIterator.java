@@ -99,6 +99,11 @@ class PitIterator {
 		board.addStonesToKalah(board.getCurrentPlayer(), stones);
 	}
 
+	
+	/** 
+	 * Get the current pitID we're iterating over
+	 * @return the current pit id
+	 */
 	int getCurrentPitID() {
 		return currentPitID;
 	}

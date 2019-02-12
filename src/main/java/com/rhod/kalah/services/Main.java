@@ -1,9 +1,8 @@
 package com.rhod.kalah.services;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.rhod.kalah.services.logic.LogicServer;
 import com.rhod.kalah.services.registration.RegistrationServer;
+import com.rhod.kalah.services.repository.RepositoryServer;
 
 public class Main {
 
@@ -27,13 +26,14 @@ public class Main {
 			return;
 		}
 		
-		//TODO facto
+		//TODO could put a factory here
 		if (serverName.equals("registration")) {
 			RegistrationServer.main(args);
 		} else if (serverName.equals("logic")) {
 			LogicServer.main(args);
-		}
-		else {
+		} else if(serverName.equals("repository")) {
+			RepositoryServer.main(args);
+		}else {
 			System.out.println("Unknown server type: " + serverName);
 			usage();
 		}

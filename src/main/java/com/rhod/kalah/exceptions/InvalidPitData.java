@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Allow the controller to return a 404 if we've been sent a invalid pit data
+ * Allow the controller to return a 400 if we've been sent a invalid pit data
  * 
  * @author Rhodri
  */

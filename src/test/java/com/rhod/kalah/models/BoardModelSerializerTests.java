@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BoardModelSerializerTests {
-ObjectMapper mapper;
+	ObjectMapper mapper;
 	
 	@Before
 	public void setup() {
@@ -38,6 +38,26 @@ ObjectMapper mapper;
 	
 
 		final BoardModel board = buildModel();
+		try {
+			String result = mapper.writeValueAsString(board);
+			Assert.assertEquals(expectJson, result);
+		} catch (JsonProcessingException e) {
+			Assert.assertTrue(false);
+		}
+
+	}
+	
+	@Test
+	public void validJsonForUser() {
+	final String expectJson =  "{\"1\":4,\"2\":4,\"3\":4,\"4\":4,"
+						+ "\"5\":4,\"6\":4,\"7\":4,\"8\":4,"
+						+ "\"9\":4,\"10\":4,\"11\":4,\"12\":4,"
+						+ "\"13\":4,\"14\":4}";
+	
+	
+
+		final BoardModel board = buildModel();
+		board.prepareForUser();
 		try {
 			String result = mapper.writeValueAsString(board);
 			Assert.assertEquals(expectJson, result);
