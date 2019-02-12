@@ -32,7 +32,10 @@ public class BoardModelSerializer extends StdSerializer<BoardModel> {
            jgen.writeNumberField(Integer.toString(i+1), pits.get(i));
        }
     
-       jgen.writeStringField("Player", value.getCurrentPlayer().toString());
+       if(value.getCurrentPlayer() != null) {
+    	   jgen.writeStringField("Player", value.getCurrentPlayer().toString());
+       }
+       
        jgen.writeEndObject();
    }
 }
