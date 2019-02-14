@@ -1,20 +1,14 @@
 package com.rhod.kalah.logic;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.rhod.kalah.exceptions.InvalidPitNumber;
 import com.rhod.kalah.models.BoardModel;
 import com.rhod.kalah.models.Player;
 
-import freemarker.core.ReturnInstruction.Return;
-
 /**
- * The board which makes move on the board model.
+ * Allow the caller to update the BoardModel with legal Kalah moves.
  * 
  * @author Rhodri
  *
@@ -26,6 +20,7 @@ class Board {
     static final int KALAH_ONE = 6;
 	static final int KALAH_TWO = 13;
 	static final int NO_OF_PITS = 14;
+	static final int OPPOSITE_PIT_SWAP = 12;
 	
 	/**
 	 * Get the Kalah for the given player.
@@ -33,7 +28,7 @@ class Board {
 	 * @return the given player Kalah.
 	 */
 	static int getKalah(final Player player) {
-		return player == player.ONE ? KALAH_ONE : KALAH_TWO;
+		return player == Player.ONE ? KALAH_ONE : KALAH_TWO;
 	}
 		
 	protected Logger logger = Logger.getLogger(Board.class.getName());
@@ -85,7 +80,7 @@ class Board {
 	
 	/**
 	 * Gather all the remaining stones in the players pits and add them
-	 * to the the players Kalah.
+	 * to the Kalah.
 	 * @param player the given player
 	 */
 	void gatherRemainingStones(Player player) {
@@ -102,6 +97,9 @@ class Board {
 		return data.getCurrentPlayer();
 	}
 
+	/**
+	 * @return current state of the board
+	 */
 	BoardModel getCurrentState() {
 		return data;
 	}
@@ -193,7 +191,7 @@ class Board {
 	 * @param pit the player pit.
 	 */
 	public void stealOpponentsStones(PitIterator pit) {
-		final int opponentsPit = 12 - pit.getCurrentPitID();
+		final int opponentsPit = OPPOSITE_PIT_SWAP - pit.getCurrentPitID();
 		final int stoneCount = removeStones(opponentsPit);
 		addStonesToKalah(getCurrentPlayer(), stoneCount);
 	}
@@ -216,7 +214,7 @@ class Board {
 	}
 
 	/**
-	 * Validates the pit Id passed it verify its a valid move.
+	 * Validates the pit Id passed and verify it's a valid move.
 	 * @param pitId the pit id to validate
 	 */
 	public String validatePitID(final int pitID) {
@@ -242,7 +240,7 @@ class Board {
 			}
 		}
 		
-		logger.info("validatePitId() for PitID " + Integer.toString(pitID) + " has return " + ret);
+		logger.info("validatePitId() for PitID " + Integer.toString(pitID) + " has returned " + ret);
 		
 		return ret;
 	}

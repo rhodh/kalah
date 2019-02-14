@@ -15,19 +15,18 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonDeserialize(using = BoardModelDeserializer.class)
 @JsonSerialize(using = BoardModelSerializer.class)
 public class BoardModel {
-	private static List<Integer> initalBoard() {
-		return new ArrayList<>(Arrays.asList(6,6,6,6,6,6,0,6,6,6,6,6,6,0));
+	public static BoardModel initalBoard() {
+		List<Integer> pits = new ArrayList<>(Arrays.asList(6,6,6,6,6,6,0,6,6,6,6,6,6,0));
+		return new BoardModel(pits, Player.ONE);
 	}
 	private List<Integer> pits;
 
 	private Player currentPlayer;
-	
+
 	/**
-	 * Default class which sets up the inital board
+	 * Default class
 	 */
 	public BoardModel() {
-		this.pits = initalBoard();
-		this.currentPlayer = Player.ONE;
 	}
 
 	/**
@@ -94,5 +93,14 @@ public class BoardModel {
 	 */
 	public void prepareForUser() {
 		currentPlayer = null;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BoardModel [pits=" + pits + ", currentPlayer=" + currentPlayer + "]";
 	}
 }

@@ -14,12 +14,14 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 /**
  * Custom deserializer used to deserialize JSON object to the game state
  * 
- * @note Since we want to store the game state as array we need to customise 
+ * @note Since we want to store the game state as an array we need to customise 
  * 
  * @author Rhodri
  *
  */
 public class BoardModelDeserializer extends StdDeserializer<BoardModel> {
+
+	private static final long serialVersionUID = 1L;
 
 	protected BoardModelDeserializer(Class<?> vc) {
 		super(vc);
@@ -30,6 +32,9 @@ public class BoardModelDeserializer extends StdDeserializer<BoardModel> {
 	}
 
 	static final int INVALID_VALUE = -1;
+	static final int FIRST_PIT_ID = 1;
+	static final int LAST_PIT_ID = 14;
+	
 
 	private JsonNode getJsonValueNode(final String jsonKey, final JsonNode node, final JsonParser p) 
 			throws JsonParseException {
@@ -54,7 +59,7 @@ public class BoardModelDeserializer extends StdDeserializer<BoardModel> {
 		List<Integer> pits = new ArrayList<>();
 		
 		// Get the all the pit ids
-		for(int i = 1; i < 15; ++i) {
+		for(int i = FIRST_PIT_ID; i <= LAST_PIT_ID; ++i) {
 			final String jsonKey = Integer.toString(i);
 			
 			final JsonNode jsonValue = getJsonValueNode(jsonKey, node, p);

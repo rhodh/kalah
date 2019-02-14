@@ -3,8 +3,6 @@ package com.rhod.kalah.models;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -12,10 +10,12 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 public class BoardModelSerializer extends StdSerializer<BoardModel> {
     
-   public BoardModelSerializer() {
-       this(null);
-   }
-  
+	private static final long serialVersionUID = 1L;
+
+	public BoardModelSerializer() {
+	       this(null);
+	}
+	  
    public BoardModelSerializer(Class<BoardModel> t) {
        super(t);
    }

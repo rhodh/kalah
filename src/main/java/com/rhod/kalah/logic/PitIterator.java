@@ -30,7 +30,7 @@ class PitIterator {
 	}
 	
 	/**
-	 * Give a pit id calc next pit making sure we loop back to 1. 
+	 * Give a pit id calculate the next pit id. 
 	 * @param pitId the given pitID 
 	 * @return the calculated pipID.
 	 */
@@ -62,7 +62,7 @@ class PitIterator {
 	 * @return true if its the players Kalah
 	 */
 	public boolean isOwnKalah() {
-		return board.getKalah(board.getCurrentPlayer()) == currentPitID;
+		return Board.getKalah(board.getCurrentPlayer()) == currentPitID;
 	}
 	
 	/**

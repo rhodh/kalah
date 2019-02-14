@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class GameInstance {
 	private int id;
 	private String url;
-	private BoardModel status;
+	private BoardModel boardModel;
 	
 	@JsonInclude(Include.NON_NULL)
 	private Integer version;
@@ -18,9 +18,22 @@ public class GameInstance {
 	 */
 	public GameInstance(int id, String url) {
 		this.id = id;
-		this.url = url;
+		this.url = buildURL(id, url);
 		version = 0;
-		status = new BoardModel();
+		boardModel = BoardModel.initalBoard();
+	}
+	
+	public GameInstance() {
+	}
+
+	private String buildURL(int id, String url) {
+		String ret = url;
+		
+		if(!url.endsWith("/")) {
+			ret += "/";
+		}
+		
+		return ret + Integer.toString(id);
 	}
 	
 	/**
@@ -54,15 +67,15 @@ public class GameInstance {
 	/**
 	 * @return the model
 	 */
-	public BoardModel getStatus() {
-		return status;
+	public BoardModel getModel() {
+		return boardModel;
 	}
 
 	/**
 	 * @param model the model to set
 	 */
-	public void setStatus(BoardModel model) {
-		this.status = model;
+	public void setModel(BoardModel model) {
+		this.boardModel = model;
 	}
 
 	/**
@@ -71,6 +84,13 @@ public class GameInstance {
 	public Integer getVersion() {
 		return version;
 	}
+	
+	/**
+	 * @return updates the version
+	 */
+	public void incrementVersion() {
+		version++;
+	}
 
 	/**
 	 * @param version the version to set
@@ -78,13 +98,14 @@ public class GameInstance {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-
-	/**
-	 * Clean up any data we don't wish to return to the user
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
-	public void prepareForUser() {
-		this.version = null;
-		this.status.prepareForUser();
+	@Override
+	public String toString() {
+		return "GameInstance [id=" + id + ", url=" + url + ", status=" + boardModel.toString() + ", version=" + version + "]";
 	}
+
 
 }

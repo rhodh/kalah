@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.anyInt;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatchers;
 

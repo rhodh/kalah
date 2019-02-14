@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * 
  * @author Rhodri
  */
-@ResponseStatus(HttpStatus.BAD_REQUEST)
-public class UpdateVersionOutOfDate extends Exception {
+@ResponseStatus(code=HttpStatus.BAD_REQUEST, reason="Update version out of date")
+public class UpdateVersionOutOfDate extends RuntimeException {
 	public UpdateVersionOutOfDate(final Integer gameId, final Integer requestVersion, final Integer actualVersion) {
 		super("Been asked to update game " + gameId.toString() 
 					+ " to version " + requestVersion.toString() 
