@@ -6,7 +6,7 @@ import com.rhod.kalah.models.BoardModel;
 import com.rhod.kalah.models.Player;
 
 /**
- * Stateless Class that 
+ * Stateless Class that implement the Kalah rules on the board.
  * @author Rhodri
  *
  */

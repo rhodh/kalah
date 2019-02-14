@@ -1,5 +1,6 @@
 package com.rhod.kalah.services;
 
+import com.rhod.kalah.services.game.GameServer;
 import com.rhod.kalah.services.logic.LogicServer;
 import com.rhod.kalah.services.registration.RegistrationServer;
 import com.rhod.kalah.services.repository.RepositoryServer;
@@ -33,7 +34,9 @@ public class Main {
 			LogicServer.main(args);
 		} else if(serverName.equals("repository")) {
 			RepositoryServer.main(args);
-		}else {
+		} else if(serverName.equals("game")) {
+			GameServer.main(args);
+		} else {
 			System.out.println("Unknown server type: " + serverName);
 			usage();
 		}

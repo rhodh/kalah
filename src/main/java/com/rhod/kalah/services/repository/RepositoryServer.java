@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Import;
 
-import com.rhod.kalah.logic.LogicConfiguration;
 import com.rhod.kalah.repository.RepositoryConfiguration;
 
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})

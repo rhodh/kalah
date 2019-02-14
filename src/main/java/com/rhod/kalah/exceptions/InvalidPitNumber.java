@@ -4,12 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Allow the controller to return a 400 if we've been sent a invalid pitNO
+ *  Allow the controller to return a 400 if we've been sent an invalid pitNo.
  * 
  * @author Rhodri
  */
-@ResponseStatus(HttpStatus.BAD_REQUEST)
-public class InvalidPitNumber extends Exception {
+@ResponseStatus(code=HttpStatus.BAD_REQUEST, reason="Invalid pit number given")
+public class InvalidPitNumber extends RuntimeException  {
 
 	public InvalidPitNumber(String string) {
 		super(string);
